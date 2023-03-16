@@ -1,6 +1,4 @@
-package com.example.composetutorial.ui.theme
-
-import com.example.composetutorial.Message
+package com.example.composetutorial.model
 
 object SampleData {
     // Sample conversation data

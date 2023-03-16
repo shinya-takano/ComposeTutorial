@@ -21,7 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composetutorial.ui.theme.ComposeTutorialTheme
-import com.example.composetutorial.ui.theme.SampleData
+import com.example.composetutorial.model.SampleData
+import com.example.composetutorial.model.Message
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-data class Message(val author: String, val body: String)
+
+
+@Composable
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) { message ->
+            MessageCard(message)
+        }
+    }
+}
 
 @Composable
 fun MessageCard(msg: Message) {
@@ -87,6 +97,8 @@ fun MessageCard(msg: Message) {
 
 }
 
+// region preview area
+
 @Preview(name = "Light Mode")
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -104,15 +116,6 @@ fun PreviewMessageCard() {
     }
 }
 
-@Composable
-fun Conversation(messages: List<Message>) {
-    LazyColumn {
-        items(messages) { message ->
-            MessageCard(message)
-        }
-    }
-}
-
 @Preview
 @Composable
 fun PreviewConversation() {
@@ -120,3 +123,4 @@ fun PreviewConversation() {
         Conversation(SampleData.conversationSample)
     }
 }
+// endregion preview area
